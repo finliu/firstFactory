@@ -1,0 +1,50 @@
+package co.jp.netwisdom.dao;
+
+import java.sql.SQLException;
+
+import cn.key.Tools.DataTool;
+import cn.key.dbManager.JdbcTemplate;
+import cn.key.entity.BookDiscuss;
+import co.jp.netwisdom.entity.UsernifoAndHobby;
+
+public class UserinfoAndHobbyDao {
+	private JdbcTemplate template = new JdbcTemplate();
+
+	public boolean save(UsernifoAndHobby userAndEntity) throws ClassNotFoundException, SQLException  {
+		int row = 0;
+		String sqlForUnerinfo = "insert into userinfor values(?,?,?,?,?)";
+		String sqlForHobby = "insert into hobby values(?,?)";
+		Object[] objectForU = {userAndEntity.getName(),
+				userAndEntity.getPassword(),
+				userAndEntity.getSex(),
+				userAndEntity.getMajor(),
+				userAndEntity.getHobby(),
+				userAndEntity.getIntro(),			
+		};
+		int rowU = template.updata(sqlForUnerinfo, objectForU);
+		
+		int rowH =0;
+		for(String hobby:userAndEntity.getHobby()){
+				Object[] objectForH = {
+				userAndEntity.getName(),				
+				hobby					
+				};
+		rowH += template.updata(sqlForHobby, objectForH);	
+		}
+		return (rowU==1 && rowH== userAndEntity.getHobby().length);
+	
+		//String strData = DataTool.allDatetoString(info.getWriteData());
+		
+		try {
+			row = template.updata(sqlForUnerinfo, objectForU);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return (row == 1);
+	}
+	
+	
+	
+}

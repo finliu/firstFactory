@@ -1,0 +1,46 @@
+package co.jp.netwisdom.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class RegisterServlet extends HttpServlet  {
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String username=req.getParameter("username");
+		//System.out.println(username);
+		String password=req.getParameter("password");
+		String sex=req.getParameter("sex");
+		String[] hobby=req.getParameterValues("hobby");
+		String intro=req.getParameter("intro");
+		
+		
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		this.doGet(req, resp);
+	}
+        
+	
+}
